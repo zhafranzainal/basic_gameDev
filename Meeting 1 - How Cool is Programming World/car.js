@@ -4,7 +4,7 @@ var car = {
     color: 'White',
 
     displayCar: function () {
-        console.log('I have ' + car.type)
+        console.log('I have ' + car.type);
     }
 };
 
