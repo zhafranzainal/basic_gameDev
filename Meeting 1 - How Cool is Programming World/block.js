@@ -1,7 +1,7 @@
 var block = {
     length: 10.5,
-    width: 4.5,
-    height: 4.5,
+    width: 4,
+    height: 4,
 };
 
 function volume() {
