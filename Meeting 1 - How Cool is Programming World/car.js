@@ -2,6 +2,7 @@ var car = {
     type: 'Tesla',
     model: 'Model 3',
     color: 'White',
+
     displayCar: function () {
         console.log('I have ' + car.type)
     }
