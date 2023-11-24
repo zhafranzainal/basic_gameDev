@@ -1,0 +1,11 @@
+var car = {
+    type: 'Tesla',
+    model: 'Model 3',
+    color: 'White'
+};
+
+// Accessing property using dot notation
+console.log(car.type);
+
+// Accessing property using bracket notation (with the property name as a string)
+console.log(car['type']);
