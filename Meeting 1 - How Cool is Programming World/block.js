@@ -1,12 +1,17 @@
 var block = {
-    length: 10.5,
-    width: 4,
+    length: 10,
+    width: 5,
     height: 4,
+
+    volume: function () {
+        return this.length * this.width * this.height;
+    }
 };
 
-function volume() {
+function displayVolume() {
     var vol = block.length * block.width * block.height;
     return `The volume of the block is ${vol} cm3`;
 }
 
-console.log(volume());
+console.log(displayVolume());
+console.log(block.volume());
