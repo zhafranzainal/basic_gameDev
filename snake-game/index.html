@@ -30,6 +30,12 @@
     <h1>Snake Game</h1>
     <p>Score : <span id="score"> </span></p>
     <canvas width="400" height="400" id="game" style="background-color : palegreen"></canvas>
+
+    <!-- background music -->
+    <audio id="bgMusic" loop>
+        <source src="snake.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </body>
 
 <script>
@@ -84,6 +90,13 @@
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
+
+    // add background music
+    document.addEventListener('click', function () {
+        var bgMusic = document.getElementById("bgMusic");
+        bgMusic.volume = 0.5;
+        bgMusic.play();
+    });
 
     // touch controls
     var touchStartX, touchStartY;
