@@ -101,7 +101,7 @@
 
         // to prevent accidental reverse movement, check which axis is longer
         if (Math.abs(dx) > Math.abs(dy)) {
-            // Horizontal swipe
+            // horizontal swipe
             if (dx > 0 && snake.dx === 0) {
                 snake.dx = grid;
                 snake.dy = 0;
@@ -110,7 +110,7 @@
                 snake.dy = 0;
             }
         } else {
-            // Vertical swipe
+            // vertical swipe
             if (dy > 0 && snake.dy === 0) {
                 snake.dy = grid;
                 snake.dx = 0;
@@ -126,7 +126,7 @@
 
         requestAnimationFrame(loop);
 
-        if (++count < 6) {
+        if (++count < 12) {
             return;
         }
 
