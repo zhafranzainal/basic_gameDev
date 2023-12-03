@@ -10,7 +10,7 @@ var block = {
 
 function displayVolume() {
     var vol = block.length * block.width * block.height;
-    return `The volume of the block is ${vol} cm3`;
+    return `The volume of the block is ${vol} cm^3`;
 }
 
 console.log(displayVolume());
