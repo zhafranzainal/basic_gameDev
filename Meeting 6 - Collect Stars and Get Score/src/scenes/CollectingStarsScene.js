@@ -10,6 +10,7 @@ export default class CollectingStarsScene extends Phaser.Scene {
 		this.platforms = undefined;
 		this.player = undefined;
 		this.stars = undefined;
+		this.cursor = undefined;
 	}
 
 	preload() {
@@ -52,6 +53,8 @@ export default class CollectingStarsScene extends Phaser.Scene {
 			// @ts-ignore
 			child.setBounceY(0.5);
 		});
+
+		this.cursor = this.input.keyboard.createCursorKeys();
 
 	}
 
