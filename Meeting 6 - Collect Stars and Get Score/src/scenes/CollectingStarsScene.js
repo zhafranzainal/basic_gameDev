@@ -37,7 +37,7 @@ export default class CollectingStarsScene extends Phaser.Scene {
 		this.platforms.create(750, 220, 'platform');
 		this.platforms.create(400, 568, 'platform').setScale(2).refreshBody();
 
-		this.player = this.physics.add.sprite(100, 450, 'dude');
+		this.player = this.physics.add.sprite(100, 510, 'dude');
 		this.player.setCollideWorldBounds(true);
 		this.physics.add.collider(this.player, this.platforms);
 
