@@ -7,7 +7,7 @@ export default class CollectingStarsScene extends Phaser.Scene {
 	}
 
 	init() {
-
+		this.platforms = undefined;
 	}
 
 	preload() {
@@ -25,7 +25,14 @@ export default class CollectingStarsScene extends Phaser.Scene {
 	}
 
 	create() {
+
 		this.add.image(400, 300, 'sky');
+
+		this.platforms = this.physics.add.staticGroup();
+		this.platforms.create(600, 400, 'platform');
+		this.platforms.create(50, 250, 'platform');
+		this.platforms.create(750, 220, 'platform');
+
 	}
 
 	update() {
