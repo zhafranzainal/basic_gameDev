@@ -8,6 +8,7 @@ export default class CollectingStarsScene extends Phaser.Scene {
 
 	init() {
 		this.platforms = undefined;
+		this.player = undefined;
 	}
 
 	preload() {
@@ -33,6 +34,10 @@ export default class CollectingStarsScene extends Phaser.Scene {
 		this.platforms.create(50, 250, 'platform');
 		this.platforms.create(750, 220, 'platform');
 		this.platforms.create(400, 568, 'platform').setScale(2).refreshBody();
+
+		this.player = this.physics.add.sprite(100, 450, 'dude');
+		this.player.setCollideWorldBounds(true);
+		this.physics.add.collider(this.player, this.platforms);
 
 	}
 
