@@ -48,6 +48,11 @@ export default class CollectingStarsScene extends Phaser.Scene {
 
 		this.physics.add.collider(this.stars, this.platforms);
 
+		this.stars.children.iterate((child) => {
+			// @ts-ignore
+			child.setBounceY(0.5);
+		});
+
 	}
 
 	update() {
