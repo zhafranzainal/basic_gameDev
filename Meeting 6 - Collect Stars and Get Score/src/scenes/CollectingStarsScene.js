@@ -7,10 +7,15 @@ export default class CollectingStarsScene extends Phaser.Scene {
 	}
 
 	init() {
+
 		this.platforms = undefined;
 		this.player = undefined;
 		this.stars = undefined;
 		this.cursor = undefined;
+
+		this.score = 0;
+		this.scoreText = undefined;
+
 	}
 
 	preload() {
@@ -87,6 +92,11 @@ export default class CollectingStarsScene extends Phaser.Scene {
 			this
 		);
 
+		this.scoreText = this.add.text(16, 16, 'Score : 0', {
+			fontSize: '32px',
+			color: 'yellow'
+		});
+
 	}
 
 	update() {
@@ -112,7 +122,12 @@ export default class CollectingStarsScene extends Phaser.Scene {
 	}
 
 	collectStar(player, star) {
+
 		star.destroy();
+
+		this.score += 10;
+		this.scoreText.setText('Score : ' + this.score);
+
 	}
 
 }
