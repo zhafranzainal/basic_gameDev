@@ -79,6 +79,14 @@ export default class CollectingStarsScene extends Phaser.Scene {
 			repeat: -1
 		});
 
+		this.physics.add.overlap(
+			this.player,
+			this.stars,
+			this.collectStar,
+			null,
+			this
+		);
+
 	}
 
 	update() {
@@ -101,6 +109,10 @@ export default class CollectingStarsScene extends Phaser.Scene {
 			this.player.anims.play('turn');
 		}
 
+	}
+
+	collectStar(player, star) {
+		star.destroy();
 	}
 
 }
