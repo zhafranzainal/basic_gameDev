@@ -6,6 +6,10 @@ export default class CollectingStarsScene extends Phaser.Scene {
 		super('collecting-stars-scene');
 	}
 
+	init() {
+
+	}
+
 	preload() {
 
 		this.load.image('sky', 'images/sky.png');
@@ -22,6 +26,10 @@ export default class CollectingStarsScene extends Phaser.Scene {
 
 	create() {
 		this.add.image(400, 300, 'sky');
+	}
+
+	update() {
+
 	}
 
 }
