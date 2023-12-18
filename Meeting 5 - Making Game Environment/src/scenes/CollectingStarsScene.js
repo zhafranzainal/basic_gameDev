@@ -55,8 +55,4 @@ export default class CollectingStarsScene extends Phaser.Scene {
 
 	}
 
-	update() {
-
-	}
-
 }
