@@ -32,7 +32,7 @@ export default class CollectingStarsScene extends Phaser.Scene {
 		this.platforms.create(600, 400, 'platform');
 		this.platforms.create(50, 250, 'platform');
 		this.platforms.create(750, 220, 'platform');
-
+		this.platforms.create(400, 568, 'platform').setScale(2).refreshBody();
 	}
 
 	update() {
