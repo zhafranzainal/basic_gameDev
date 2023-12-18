@@ -119,6 +119,14 @@ export default class CollectingStarsScene extends Phaser.Scene {
 			this.player.anims.play('turn');
 		}
 
+		if (this.score >= 100) {
+			this.physics.pause();
+			this.add.text(300, 300, 'You Win!', {
+				fontSize: '48px',
+				color: 'yellow'
+			});
+		}
+
 	}
 
 	collectStar(player, star) {
