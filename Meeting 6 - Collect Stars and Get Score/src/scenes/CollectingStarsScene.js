@@ -81,4 +81,21 @@ export default class CollectingStarsScene extends Phaser.Scene {
 
 	}
 
+	update() {
+
+		if (this.cursor.left.isDown) {
+			this.player.setVelocity(-200, 200);
+			this.player.anims.play('left', true);
+		}
+		else if (this.cursor.right.isDown) {
+			this.player.setVelocity(200, 200);
+			this.player.anims.play('right', true);
+		}
+		else {
+			this.player.setVelocity(0, 0);
+			this.player.anims.play('turn');
+		}
+
+	}
+
 }
