@@ -93,19 +93,19 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
         nav_right.on('pointerdown', () => {
             this.nav_right = true
-        }, this)
+        }, this);
 
         nav_right.on('pointerout', () => {
             this.nav_right = false
-        }, this)
+        }, this);
 
         shoot.on('pointerdown', () => {
             this.shoot = true
-        }, this)
+        }, this);
 
         shoot.on('pointerout', () => {
             this.shoot = false
-        }, this)
+        }, this);
 
     }
 
