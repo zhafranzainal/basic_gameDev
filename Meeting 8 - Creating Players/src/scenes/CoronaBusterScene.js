@@ -14,6 +14,9 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.nav_right = false;
         this.shoot = false;
 
+        this.player = undefined;
+        this.speed = 100;
+
     }
 
     preload() {
@@ -24,6 +27,11 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.load.image('left-btn', 'images/left-btn.png');
         this.load.image('right-btn', 'images/right-btn.png');
         this.load.image('shoot-btn', 'images/shoot-btn.png');
+
+        this.load.spritesheet('player', 'images/ship.png', {
+            frameWidth: 66,
+            frameHeight: 66
+        });
 
     }
 
@@ -45,6 +53,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
         );
 
         this.createButton();
+
+        this.player = this.createPlayer();
 
     }
 
@@ -93,19 +103,50 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
         nav_right.on('pointerdown', () => {
             this.nav_right = true
-        }, this)
+        }, this);
 
         nav_right.on('pointerout', () => {
             this.nav_right = false
-        }, this)
+        }, this);
 
         shoot.on('pointerdown', () => {
             this.shoot = true
-        }, this)
+        }, this);
 
         shoot.on('pointerout', () => {
             this.shoot = false
-        }, this)
+        }, this);
+
+    }
+
+    createPlayer() {
+
+        const player = this.physics.add.sprite(200, 450, 'player');
+
+        player.setCollideWorldBounds(true);
+
+        this.anims.create({
+            key: 'turn',
+            frames: [{
+                key: 'player', frame: 0
+            }],
+        });
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('player', {
+                start: 1, end: 2
+            }),
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('player', {
+                start: 1, end: 2
+            })
+        });
+
+        return player;
 
     }
 
