@@ -20,6 +20,7 @@ export default class CoronaBusterScene extends Phaser.Scene {
         const gameHeight = this.scale.height * 0.5;
 
         this.add.image(gameWidth, gameHeight, 'background');
+
     }
 
     update(time) {
