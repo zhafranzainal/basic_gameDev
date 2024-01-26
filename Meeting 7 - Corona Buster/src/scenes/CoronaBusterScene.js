@@ -11,11 +11,15 @@ export default class CoronaBusterScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('', 'images/');
+        this.load.image('background', 'images/bg-layer1.png');
     }
 
     create() {
-        this.add.image(960, 540, '');
+
+        const gameWidth = this.scale.width * 0.5;
+        const gameHeight = this.scale.height * 0.5;
+
+        this.add.image(gameWidth, gameHeight, 'background');
     }
 
     update(time) {
