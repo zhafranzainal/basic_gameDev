@@ -7,11 +7,12 @@ export default class CoronaBusterScene extends Phaser.Scene {
     }
 
     init() {
-
+        this.clouds = undefined;
     }
 
     preload() {
         this.load.image('background', 'images/bg-layer1.png');
+        this.load.image('cloud', 'images/cloud.png');
     }
 
     create() {
@@ -20,6 +21,16 @@ export default class CoronaBusterScene extends Phaser.Scene {
         const gameHeight = this.scale.height * 0.5;
 
         this.add.image(gameWidth, gameHeight, 'background');
+
+        this.clouds = this.physics.add.group({
+            key: 'cloud',
+            repeat: 10,
+        })
+
+        Phaser.Actions.RandomRectangle(
+            this.clouds.getChildren(),
+            this.physics.world.bounds
+        )
 
     }
 
