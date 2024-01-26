@@ -171,6 +171,17 @@ export default class CoronaBusterScene extends Phaser.Scene {
             this.player.anims.play('turn');
         }
 
+        if (this.cursor.up.isDown && !this.cursor.down.isDown) {
+            this.player.setVelocityY(this.speed * -1);
+            this.player.anims.play('turn');
+        } else if (this.cursor.down.isDown && !this.cursor.up.isDown) {
+            this.player.setVelocityY(this.speed);
+            this.player.anims.play('turn');
+        } else {
+            this.player.setVelocityY(0);
+            this.player.anims.play('turn');
+        }
+
     }
 
 }
