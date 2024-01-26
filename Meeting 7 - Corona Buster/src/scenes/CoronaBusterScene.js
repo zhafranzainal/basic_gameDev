@@ -37,7 +37,18 @@ export default class CoronaBusterScene extends Phaser.Scene {
     update(time) {
 
         this.clouds.children.iterate((child) => {
+
+            // @ts-ignore
             child.setVelocityY(20);
+
+            // @ts-ignore
+            if (child.y > this.scale.height) {
+                // @ts-ignore
+                child.x = Phaser.Math.Between(10, 400)
+                // @ts-ignore
+                child.y = 0;
+            }
+
         })
 
     }
