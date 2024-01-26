@@ -75,6 +75,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
         })
 
+        this.movePlayer(this.player, time);
+
     }
 
     createButton() {
@@ -147,6 +149,23 @@ export default class CoronaBusterScene extends Phaser.Scene {
         });
 
         return player;
+
+    }
+
+    movePlayer(player, time) {
+
+        if (this.nav_left) {
+            this.player.setVelocityX(this.speed * -1);
+            this.player.anims.play('left', true);
+            this.player.setFlipX(false);
+        } else if (this.nav_right) {
+            this.player.setVelocityX(this.speed);
+            this.player.anims.play('right', true);
+            this.player.setFlipX(true);
+        } else {
+            this.player.setVelocityX(0);
+            this.player.anims.play('turn');
+        }
 
     }
 
