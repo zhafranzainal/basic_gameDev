@@ -17,6 +17,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.player = undefined;
         this.speed = 100;
 
+        this.cursor = undefined;
+
     }
 
     preload() {
@@ -55,6 +57,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.createButton();
 
         this.player = this.createPlayer();
+
+        this.cursor = this.input.keyboard.createCursorKeys();
 
     }
 
@@ -128,17 +132,17 @@ export default class CoronaBusterScene extends Phaser.Scene {
         player.setCollideWorldBounds(true);
 
         this.anims.create({
-            key: 'turn',
-            frames: [{
-                key: 'player', frame: 0
-            }],
-        });
-
-        this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('player', {
                 start: 1, end: 2
             }),
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [{
+                key: 'player', frame: 0
+            }],
         });
 
         this.anims.create({
@@ -154,11 +158,11 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
     movePlayer(player, time) {
 
-        if (this.nav_left) {
+        if (this.nav_left || this.cursor.left.isDown) {
             this.player.setVelocityX(this.speed * -1);
             this.player.anims.play('left', true);
             this.player.setFlipX(false);
-        } else if (this.nav_right) {
+        } else if (this.nav_right || this.cursor.right.isDown) {
             this.player.setVelocityX(this.speed);
             this.player.anims.play('right', true);
             this.player.setFlipX(true);
