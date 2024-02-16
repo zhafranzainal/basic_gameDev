@@ -203,7 +203,7 @@ export default class CoronaBusterScene extends Phaser.Scene {
     spawnEnemy() {
 
         const config = {
-            speed: 30,
+            speed: this.enemySpeed,
             rotation: 0.1
         }
 
