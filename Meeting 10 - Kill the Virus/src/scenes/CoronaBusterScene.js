@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import FallingObject from '../ui/FallingObject';
+import Laser from '../ui/Laser';
 
 export default class CoronaBusterScene extends Phaser.Scene {
 
@@ -23,6 +24,9 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.enemies = undefined;
         this.enemySpeed = 50;
 
+        this.lasers = undefined;
+        this.lastFired = 10;
+
     }
 
     preload() {
@@ -40,6 +44,11 @@ export default class CoronaBusterScene extends Phaser.Scene {
         });
 
         this.load.image('enemy', 'images/enemy.png');
+
+        this.load.spritesheet('laser', 'images/laser-bolts.png', {
+            frameWidth: 16,
+            frameHeight: 16
+        });
 
     }
 
@@ -70,14 +79,28 @@ export default class CoronaBusterScene extends Phaser.Scene {
             classType: FallingObject,
             maxSize: 10,
             runChildUpdate: true
-        })
+        });
 
         this.time.addEvent({
             delay: Phaser.Math.Between(1000, 5000),
             callback: this.spawnEnemy,
             callbackScope: this,
             loop: true
-        })
+        });
+
+        this.lasers = this.physics.add.group({
+            classType: Laser,
+            maxSize: 10,
+            runChildUpdate: true
+        });
+
+        this.physics.add.overlap(
+            this.lasers,
+            this.enemies,
+            this.hitEnemy,
+            null,
+            this
+        );
 
     }
 
@@ -198,6 +221,17 @@ export default class CoronaBusterScene extends Phaser.Scene {
             this.player.setVelocityY(0);
         }
 
+        if ((this.shoot) && time > this.lastFired) {
+
+            const laser = this.lasers.get(0, 0, 'laser');
+
+            if (laser) {
+                laser.fire(this.player.x, this.player.y);
+                this.lastFired = time + 150;
+            }
+
+        }
+
     }
 
     spawnEnemy() {
@@ -215,6 +249,11 @@ export default class CoronaBusterScene extends Phaser.Scene {
             enemy.spawn(positionX);
         }
 
+    }
+
+    hitEnemy(laser, enemy) {
+        laser.die();
+        enemy.die();
     }
 
 }
