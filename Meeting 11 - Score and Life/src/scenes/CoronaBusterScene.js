@@ -27,6 +27,9 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.lasers = undefined;
         this.lastFired = 10;
 
+        this.scoreLabel = undefined;
+        this.score = 0;
+
     }
 
     preload() {
@@ -102,6 +105,13 @@ export default class CoronaBusterScene extends Phaser.Scene {
             this
         );
 
+        this.scoreLabel = this.add.text(10, 10, 'Score', {
+            fontSize: '16px',
+            // @ts-ignore
+            fill: 'black',
+            backgroundColor: 'white'
+        }).setDepth(1)
+
     }
 
     update(time) {
@@ -122,6 +132,7 @@ export default class CoronaBusterScene extends Phaser.Scene {
         })
 
         this.movePlayer(this.player, time);
+        this.scoreLabel.setText('Score : ' + this.score);
 
     }
 
@@ -254,6 +265,7 @@ export default class CoronaBusterScene extends Phaser.Scene {
     hitEnemy(laser, enemy) {
         laser.die();
         enemy.die();
+        this.score += 10;
     }
 
 }
