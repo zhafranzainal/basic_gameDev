@@ -30,6 +30,9 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.scoreLabel = undefined;
         this.score = 0;
 
+        this.lifeLabel = undefined;
+        this.life = 3;
+
     }
 
     preload() {
@@ -112,6 +115,14 @@ export default class CoronaBusterScene extends Phaser.Scene {
             backgroundColor: 'white'
         }).setDepth(1)
 
+        this.lifeLabel = this.add.text(10, 30, 'Life', {
+            fontSize: '16px',
+            // @ts-ignore
+            fill: 'black',
+            backgroundColor: 'white'
+        }).setDepth(1)
+
+
     }
 
     update(time) {
@@ -133,6 +144,7 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
         this.movePlayer(this.player, time);
         this.scoreLabel.setText('Score : ' + this.score);
+        this.lifeLabel.setText('Life  : ' + this.life);
 
     }
 
