@@ -113,15 +113,22 @@ export default class CoronaBusterScene extends Phaser.Scene {
             // @ts-ignore
             fill: 'black',
             backgroundColor: 'white'
-        }).setDepth(1)
+        }).setDepth(1);
 
         this.lifeLabel = this.add.text(10, 30, 'Life', {
             fontSize: '16px',
             // @ts-ignore
             fill: 'black',
             backgroundColor: 'white'
-        }).setDepth(1)
+        }).setDepth(1);
 
+        this.physics.add.overlap(
+            this.player,
+            this.enemies,
+            this.decreaseLife,
+            null,
+            this
+        );
 
     }
 
@@ -278,6 +285,22 @@ export default class CoronaBusterScene extends Phaser.Scene {
         laser.die();
         enemy.die();
         this.score += 10;
+    }
+
+    decreaseLife(player, enemy) {
+
+        enemy.die();
+        this.life--;
+
+        // Adjust player appearance based on remaining life
+        if (this.life == 2) {
+            player.setTint(0xff0000);
+        } else if (this.life == 1) {
+            player.setTint(0xff0000).setAlpha(0.2);
+        } else if (this.life == 0) {
+            this.scene.start('over-scene', { score: this.score });
+        }
+
     }
 
 }
