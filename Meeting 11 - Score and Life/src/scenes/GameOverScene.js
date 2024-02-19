@@ -25,6 +25,14 @@ export default class GameOverScene extends Phaser.Scene {
             // @ts-ignore
             fill: 'black'
         });
+
+        this.replayButton = this.add.image(200, 400, 'replay-button')
+            .setInteractive().setScale(0.5);
+
+        this.replayButton.once('pointerup', () => {
+            this.scene.start('corona-buster-scene');
+        }, this);
+
     }
 
 }
