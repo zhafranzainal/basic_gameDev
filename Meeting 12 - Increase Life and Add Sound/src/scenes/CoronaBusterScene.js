@@ -33,6 +33,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.lifeLabel = undefined;
         this.life = 3;
 
+        this.handSanitizer = undefined;
+
     }
 
     preload() {
@@ -55,6 +57,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
             frameWidth: 16,
             frameHeight: 16
         });
+
+        this.load.image('handSanitizer', 'images/handsanitizer.png');
 
     }
 
@@ -129,6 +133,18 @@ export default class CoronaBusterScene extends Phaser.Scene {
             null,
             this
         );
+
+        this.handSanitizer = this.physics.add.group({
+            classType: FallingObject,
+            runChildUpdate: true
+        });
+
+        this.time.addEvent({
+            delay: 10000,
+            callback: this.spawnHandSanitizer,
+            callbackScope: this,
+            loop: true
+        });
 
     }
 
@@ -299,6 +315,23 @@ export default class CoronaBusterScene extends Phaser.Scene {
             player.setTint(0xff0000).setAlpha(0.2);
         } else if (this.life == 0) {
             this.scene.start('over-scene', { score: this.score });
+        }
+
+    }
+
+    spawnHandSanitizer() {
+
+        const config = {
+            speed: 60,
+            rotation: 0
+        }
+
+        // @ts-ignore
+        const handSanitizer = this.handSanitizer.get(0, 0, 'handSanitizer', config);
+        const positionX = Phaser.Math.Between(70, 330);
+
+        if (handSanitizer) {
+            handSanitizer.spawn(positionX);
         }
 
     }
