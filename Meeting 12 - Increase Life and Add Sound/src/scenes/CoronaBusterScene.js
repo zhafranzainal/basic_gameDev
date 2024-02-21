@@ -146,6 +146,14 @@ export default class CoronaBusterScene extends Phaser.Scene {
             loop: true
         });
 
+        this.physics.add.overlap(
+            this.player,
+            this.handSanitizer,
+            this.increaseLife,
+            null,
+            this
+        )
+
     }
 
     update(time) {
@@ -332,6 +340,17 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
         if (handSanitizer) {
             handSanitizer.spawn(positionX);
+        }
+
+    }
+
+    increaseLife(player, handSanitizer) {
+
+        handSanitizer.die();
+        this.life++;
+
+        if (this.life >= 3) {
+            player.clearTint().setAlpha(2);
         }
 
     }
