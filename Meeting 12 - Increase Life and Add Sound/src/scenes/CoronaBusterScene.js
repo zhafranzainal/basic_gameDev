@@ -67,6 +67,7 @@ export default class CoronaBusterScene extends Phaser.Scene {
         this.load.audio('destroy', 'sfx/destroy.mp3');
         this.load.audio('gameover', 'sfx/gameover.wav');
         this.load.audio('life', 'sfx/handsanitizer.mp3');
+        this.load.audio('hit', 'sfx/hit.mp3');
 
     }
 
@@ -334,6 +335,7 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
         enemy.die();
         this.life--;
+        this.sound.play('hit');
 
         // Adjust player appearance based on remaining life
         if (this.life == 2) {
