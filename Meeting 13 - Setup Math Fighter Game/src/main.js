@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import HelloWorldScene from './scenes/HelloWorldScene';
+import MathFighterScene from './scenes/MathFIghterScene';
 
 const config = {
     type: Phaser.AUTO,
@@ -12,7 +12,7 @@ const config = {
             gravity: { y: 200 },
         },
     },
-    scene: [HelloWorldScene],
+    scene: [MathFighterScene],
 }
 
-export default new Phaser.Game(config)
+export default new Phaser.Game(config);
