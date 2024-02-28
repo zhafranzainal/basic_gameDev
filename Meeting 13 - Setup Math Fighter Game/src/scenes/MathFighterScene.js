@@ -69,6 +69,14 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.physics.add.collider(this.enemy, tile);
 
+        this.slash = this.physics.add.sprite(240, 60, 'slash')
+            .setActive(false)
+            .setVisible(false)
+            .setGravityY(-500)
+            .setOffset(0, -10)
+            .setDepth(1)
+            .setCollideWorldBounds(true)
+
     }
 
     update() {
