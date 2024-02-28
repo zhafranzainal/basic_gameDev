@@ -9,6 +9,7 @@ export default class Laser extends Phaser.Physics.Arcade.Sprite {
 
     fire(x, y) {
         this.setPosition(x, y - 50);
+        this.setSize(5, 5);
         this.setActive(true);
         this.setVisible(true);
     }

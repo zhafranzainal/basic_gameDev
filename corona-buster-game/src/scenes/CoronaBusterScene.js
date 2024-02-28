@@ -359,6 +359,8 @@ export default class CoronaBusterScene extends Phaser.Scene {
 
         // @ts-ignore
         const handSanitizer = this.handSanitizer.get(0, 0, 'handSanitizer', config);
+        handSanitizer.setSize(25, 0);
+
         const positionX = Phaser.Math.Between(70, 330);
 
         if (handSanitizer) {
