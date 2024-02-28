@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 
-export default class HelloWorldScene extends Phaser.Scene {
+export default class MathFighterScene extends Phaser.Scene {
 
     constructor() {
-        super('hello-world-scene');
+        super('math-fighter-scene');
     }
 
     preload() {
