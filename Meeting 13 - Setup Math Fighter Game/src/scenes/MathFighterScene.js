@@ -7,6 +7,14 @@ export default class MathFighterScene extends Phaser.Scene {
     }
 
     init() {
+
+        this.gameHalfWidth = this.scale.width * 0.5;
+        this.gameHalfHeight = this.scale.height * 0.5;
+
+        this.player = undefined;
+        this.enemy = undefined;
+        this.slash = undefined;
+
     }
 
     preload() {
@@ -44,6 +52,14 @@ export default class MathFighterScene extends Phaser.Scene {
 
         const fight_bg = this.add.image(240, 160, 'fight-bg');
         const tile = this.physics.add.staticImage(240, fight_bg.height - 40, 'tile');
+
+        this.player = this.physics.add.sprite(
+            this.gameHalfWidth - 150,
+            this.gameHalfHeight - 200,
+            'player'
+        ).setBounce(0.2).setOffset(-20, -10);
+
+        this.physics.add.collider(this.player, tile);
 
     }
 
