@@ -84,6 +84,8 @@ export default class MathFighterScene extends Phaser.Scene {
 
     createAnimation() {
 
+        // Player animations
+
         this.anims.create({
             key: 'player-standby',
             frames: this.anims.generateFrameNumbers('player', { start: 15, end: 19 }),
@@ -106,6 +108,33 @@ export default class MathFighterScene extends Phaser.Scene {
         this.anims.create({
             key: 'player-die',
             frames: this.anims.generateFrameNumbers('player', { start: 0, end: 4 }),
+            frameRate: 10
+        });
+
+        // Enemy animations
+
+        this.anims.create({
+            key: 'enemy-standby',
+            frames: this.anims.generateFrameNumbers('enemy', { start: 15, end: 19 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'enemy-attack',
+            frames: this.anims.generateFrameNumbers('enemy', { start: 10, end: 14 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'enemy-hit',
+            frames: this.anims.generateFrameNumbers('enemy', { start: 5, end: 9 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'enemy-die',
+            frames: this.anims.generateFrameNumbers('enemy', { start: 0, end: 4 }),
             frameRate: 10
         });
 
