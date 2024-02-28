@@ -77,6 +77,8 @@ export default class MathFighterScene extends Phaser.Scene {
             .setDepth(1)
             .setCollideWorldBounds(true)
 
+        this.createAnimation();
+
     }
 
     update() {
