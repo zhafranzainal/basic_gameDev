@@ -15,6 +15,10 @@ export default class MathFighterScene extends Phaser.Scene {
         this.enemy = undefined;
         this.slash = undefined;
 
+        this.startGame = false;
+        this.questionText = undefined;
+        this.resultText = undefined;
+
     }
 
     preload() {
@@ -65,7 +69,7 @@ export default class MathFighterScene extends Phaser.Scene {
             this.gameHalfWidth + 150,
             this.gameHalfHeight - 200,
             'enemy'
-        ).setBounce(0.2).setOffset(20, -10).setFlipX(true);
+        ).setBounce(0.2).setOffset(20, -7).setFlipX(true);
 
         this.physics.add.collider(this.enemy, tile);
 
@@ -78,6 +82,17 @@ export default class MathFighterScene extends Phaser.Scene {
             .setCollideWorldBounds(true)
 
         this.createAnimation();
+
+        let start_button = this.add.image(
+            this.gameHalfWidth,
+            this.gameHalfHeight + 181,
+            'start-btn'
+        ).setInteractive();
+
+        start_button.on('pointerdown', () => {
+            this.gameStart();
+            start_button.destroy();
+        }, this);
 
     }
 
@@ -138,6 +153,22 @@ export default class MathFighterScene extends Phaser.Scene {
             key: 'enemy-die',
             frames: this.anims.generateFrameNumbers('enemy', { start: 0, end: 4 }),
             frameRate: 10
+        });
+
+    }
+
+    gameStart() {
+
+        this.startGame = true;
+        this.player.anims.play('player-standby', true);
+        this.enemy.anims.play('enemy-standby', true);
+
+        this.resultText = this.add.text(this.gameHalfWidth, 200, '0', {
+            fontSize: '32px', fill: '#000'
+        });
+
+        this.questionText = this.add.text(this.gameHalfWidth, 100, '0', {
+            fontSize: '32px', fill: '#000'
         });
 
     }
