@@ -82,4 +82,33 @@ export default class MathFighterScene extends Phaser.Scene {
     update() {
     }
 
+    createAnimation() {
+
+        this.anims.create({
+            key: 'player-standby',
+            frames: this.anims.generateFrameNumbers('player', { start: 15, end: 19 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'player-attack',
+            frames: this.anims.generateFrameNumbers('player', { start: 10, end: 14 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'player-hit',
+            frames: this.anims.generateFrameNumbers('player', { start: 5, end: 9 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'player-die',
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 4 }),
+            frameRate: 10
+        });
+
+    }
+
 }
