@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import MathFighterScene from './scenes/MathFIghterScene';
+import MathFighterScene from './scenes/MathFighterScene';
 
 const config = {
     type: Phaser.AUTO,
@@ -10,6 +10,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 200 },
+            debug: true
         },
     },
     scale: {
