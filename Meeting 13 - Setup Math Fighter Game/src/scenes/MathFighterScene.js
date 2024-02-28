@@ -61,6 +61,14 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.physics.add.collider(this.player, tile);
 
+        this.enemy = this.physics.add.sprite(
+            this.gameHalfWidth + 150,
+            this.gameHalfHeight - 200,
+            'enemy'
+        ).setBounce(0.2).setOffset(20, -10).setFlipX(true);
+
+        this.physics.add.collider(this.enemy, tile);
+
     }
 
     update() {
