@@ -32,6 +32,9 @@ export default class MathFighterScene extends Phaser.Scene {
         this.buttonDel = undefined;
         this.buttonOk = undefined;
 
+        this.numberArray = [];
+        this.number = 0;
+
     }
 
     preload() {
@@ -237,6 +240,56 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.buttonOk = this.add.image(this.button0.x + widthDiff, this.button9.y + heightDiff, 'numbers', 11)
             .setInteractive().setData('value', 'ok');
+
+    }
+
+    addNumber(pointer, object, event) {
+
+        let value = object.getData('value');
+
+        if (isNaN(value)) {
+
+            if (value == 'del') {
+
+                this.numberArray.pop();
+
+                if (this.numberArray.length < 1) {
+                    this.numberArray[0] = 0;
+                }
+
+            }
+
+            if (value == 'ok') {
+                this.checkAnswer();
+                this.numberArray = [];
+                this.numberArray[0] = 0;
+            }
+
+        }
+
+        else {
+
+            // Check if the array has only one element and the element is 0
+            if (this.numberArray.length == 1 && this.numberArray[0] == 0) {
+
+                // Update the first element with the new value
+                this.numberArray[0] = value;
+
+            } else {
+
+                // Check if the array length is less than 10
+                if (this.numberArray.length < 10) {
+
+                    // Add the new value to the end of the array
+                    this.numberArray.push(value);
+                }
+
+            }
+
+
+        }
+
+        this.number = parseInt(this.numberArray.join(''));
 
     }
 
