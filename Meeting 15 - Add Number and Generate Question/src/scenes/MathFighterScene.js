@@ -191,6 +191,8 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.createButtons();
 
+        this.input.on('gameobjectdown', this.addNumber, this);
+
     }
 
     createButtons() {
@@ -290,6 +292,11 @@ export default class MathFighterScene extends Phaser.Scene {
         }
 
         this.number = parseInt(this.numberArray.join(''));
+
+        this.resultText.setText(this.number);
+        const textHalfWidth = this.resultText.width * 0.5;
+        this.resultText.setX(this.gameHalfWidth - textHalfWidth);
+        event.stopPropagation();
 
     }
 
