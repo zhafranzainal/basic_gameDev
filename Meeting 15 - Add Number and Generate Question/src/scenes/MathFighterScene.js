@@ -35,6 +35,8 @@ export default class MathFighterScene extends Phaser.Scene {
         this.numberArray = [];
         this.number = 0;
 
+        this.question = [];
+
     }
 
     preload() {
@@ -193,6 +195,8 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.input.on('gameobjectdown', this.addNumber, this);
 
+        this.generateQuestion();
+
     }
 
     createButtons() {
@@ -297,6 +301,55 @@ export default class MathFighterScene extends Phaser.Scene {
         const textHalfWidth = this.resultText.width * 0.5;
         this.resultText.setX(this.gameHalfWidth - textHalfWidth);
         event.stopPropagation();
+
+    }
+
+    getOperator() {
+        const operator = ['+', '-', 'x', ':'];
+        return operator[Phaser.Math.Between(0, 3)];
+    }
+
+    generateQuestion() {
+
+        let numberA = Phaser.Math.Between(0, 50);
+        let numberB = Phaser.Math.Between(0, 50);
+        let operator = this.getOperator();
+
+        if (operator === '+') {
+            this.question[0] = `${numberA} + ${numberB}`;
+            this.question[1] = numberA + numberB;
+        }
+
+        if (operator === 'x') {
+            this.question[0] = `${numberA} x ${numberB}`;
+            this.question[1] = numberA * numberB;
+        }
+
+        if (operator === '-') {
+            if (numberB > numberA) {
+                this.question[0] = `${numberB} - ${numberA}`;
+                this.question[1] = numberB - numberA;
+            } else {
+                this.question[0] = `${numberA} - ${numberB}`;
+                this.question[1] = numberA - numberB;
+            }
+        }
+
+        if (operator === ':') {
+
+            do {
+                numberA = Phaser.Math.Between(0, 50);
+                numberB = Phaser.Math.Between(0, 50);
+            } while (!Number.isInteger(numberA / numberB))
+
+            this.question[0] = `${numberA} : ${numberB}`;
+            this.question[1] = numberA / numberB;
+
+        }
+
+        this.questionText.setText(this.question[0]);
+        const textHalfWidth = this.questionText.width * 0.5;
+        this.questionText.setX(this.gameHalfWidth - textHalfWidth);
 
     }
 
