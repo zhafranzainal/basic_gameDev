@@ -45,6 +45,10 @@ export default class MathFighterScene extends Phaser.Scene {
         this.score = 0;
         this.scoreLabel = undefined;
 
+        this.timer = 10;
+        this.timerLabel = undefined;
+        this.countdown = undefined;
+
     }
 
     preload() {
@@ -137,6 +141,11 @@ export default class MathFighterScene extends Phaser.Scene {
             fill: 'white', backgroundColor: 'black'
         }).setDepth(1);
 
+        this.timerLabel = this.add.text(380, 10, 'Time :', {
+            // @ts-ignore
+            fill: 'white', backgroundColor: 'black'
+        }).setDepth(1);
+
     }
 
     update(time) {
@@ -171,6 +180,10 @@ export default class MathFighterScene extends Phaser.Scene {
 
             this.enemyAttack = true;
 
+        }
+
+        if (this.startGame = true) {
+            this.timerLabel.setText('Timer :' + this.timer);
         }
 
     }
@@ -254,6 +267,13 @@ export default class MathFighterScene extends Phaser.Scene {
         this.input.on('gameobjectdown', this.addNumber, this);
 
         this.generateQuestion();
+
+        this.countdown = this.time.addEvent({
+            delay: 1000,
+            callback: this.gameOver,
+            callbackScope: this,
+            loop: true
+        });
 
     }
 
@@ -452,6 +472,20 @@ export default class MathFighterScene extends Phaser.Scene {
             this.correctAnswer = undefined;
             this.generateQuestion();
         })
+
+    }
+
+    gameOver() {
+
+        this.timer--;
+
+        if (this.timer < 0) {
+
+            this.scene.start('over-scene', {
+                score: this.score
+            });
+
+        }
 
     }
 
