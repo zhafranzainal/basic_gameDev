@@ -436,6 +436,7 @@ export default class MathFighterScene extends Phaser.Scene {
 
         if (this.number == this.question[1]) {
             this.correctAnswer = true;
+            this.timer += 5;
         } else {
             this.correctAnswer = false;
         }
