@@ -42,6 +42,9 @@ export default class MathFighterScene extends Phaser.Scene {
         this.playerAttack = false;
         this.enemyAttack = false;
 
+        this.score = 0;
+        this.scoreLabel = undefined;
+
     }
 
     preload() {
@@ -129,6 +132,11 @@ export default class MathFighterScene extends Phaser.Scene {
             null, this
         );
 
+        this.scoreLabel = this.add.text(10, 10, 'Score :', {
+            // @ts-ignore
+            fill: 'white', backgroundColor: 'black'
+        }).setDepth(1);
+
     }
 
     update(time) {
@@ -142,6 +150,9 @@ export default class MathFighterScene extends Phaser.Scene {
             })
 
             this.playerAttack = true;
+
+            this.score += 10;
+            this.scoreLabel.setText('Score :' + this.score);
 
         }
 
@@ -344,7 +355,7 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.number = parseInt(this.numberArray.join(''));
 
-        //@ts-ignore
+        // @ts-ignore
         this.resultText.setText(this.number);
         const textHalfWidth = this.resultText.width * 0.5;
         this.resultText.setX(this.gameHalfWidth - textHalfWidth);
