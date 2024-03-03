@@ -37,6 +37,8 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.question = [];
 
+        this.correctAnswer = undefined;
+
     }
 
     preload() {
@@ -350,6 +352,16 @@ export default class MathFighterScene extends Phaser.Scene {
         this.questionText.setText(this.question[0]);
         const textHalfWidth = this.questionText.width * 0.5;
         this.questionText.setX(this.gameHalfWidth - textHalfWidth);
+
+    }
+
+    checkAnswer() {
+
+        if (this.number == this.question[1]) {
+            this.correctAnswer = true;
+        } else {
+            this.correctAnswer = false;
+        }
 
     }
 
