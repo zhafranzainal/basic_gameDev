@@ -421,7 +421,7 @@ export default class MathFighterScene extends Phaser.Scene {
                 numberB = Phaser.Math.Between(0, 50);
             } while (!Number.isInteger(numberA / numberB))
 
-            this.question[0] = `${numberA} : ${numberB}`;
+            this.question[0] = `${numberA} ÷ ${numberB}`;
             this.question[1] = numberA / numberB;
 
         }
