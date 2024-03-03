@@ -1,5 +1,5 @@
 # basic_gameDev
-Covering JavaScript classes, game frameworks like Phaser, and hands-on projects.
+Covering JavaScript classes, game framework which is Phaser, and hands-on projects.
 
 ## Projects
 
