@@ -117,6 +117,18 @@ export default class MathFighterScene extends Phaser.Scene {
             start_button.destroy();
         }, this);
 
+        this.physics.add.overlap(
+            this.slash, this.player,
+            this.spriteHit,
+            null, this
+        );
+
+        this.physics.add.overlap(
+            this.slash, this.enemy,
+            this.spriteHit,
+            null, this
+        );
+
     }
 
     update(time) {
@@ -406,6 +418,28 @@ export default class MathFighterScene extends Phaser.Scene {
             .setFrame(frame)
             .setFlipX(flip)
             .setVelocityX(velocity)
+
+    }
+
+    spriteHit(slash, sprite) {
+
+        slash.x = 0;
+        slash.y = 0;
+        slash.setActive(false);
+        slash.setVisible(false);
+
+        if (sprite.texture.key == 'player') {
+            sprite.anims.play('player-hit', true);
+        } else {
+            sprite.anims.play('enemy-hit', true);
+        }
+
+        this.time.delayedCall(500, () => {
+            this.playerAttack = false;
+            this.enemyAttack = false;
+            this.correctAnswer = undefined;
+            this.generateQuestion();
+        })
 
     }
 
