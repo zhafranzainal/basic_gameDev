@@ -344,7 +344,7 @@ export default class MathFighterScene extends Phaser.Scene {
 
         this.number = parseInt(this.numberArray.join(''));
 
-        //@ts-ignore
+        // @ts-ignore
         this.resultText.setText(this.number);
         const textHalfWidth = this.resultText.width * 0.5;
         this.resultText.setX(this.gameHalfWidth - textHalfWidth);
